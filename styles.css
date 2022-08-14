@@ -1,21 +1,16 @@
-.cover-main-container {
-    height: 90vh;
-    position: relative;
-  }
+.cover-main-center {
+  margin: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
 
-  .cover-main-center {
-    margin: 0;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-  }
-
-  .my-background {
-    background-color: black;
-    background-image: url('https://www.peterhall.com.au/assets/images/background.webp');
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-  }
+.my-background {
+  background-color: black;
+  background-image: url('https://www.peterhall.com.au/assets/images/background.webp');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
