@@ -17,3 +17,4 @@ function resizer() {
 }
 
 window.addEventListener("resize", resizer);
+window.onload = resizer();
