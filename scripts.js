@@ -16,5 +16,17 @@ function resizer() {
     }
 }
 
+var i = 0;
+var txt = "Hello, I'm Peter Hall.";
+var speed = 50;
+
+function typeWriterEffect() {
+    if (i < txt.length) {
+        document.getElementById("introduction").innerHTML += txt.charAt(i);
+        i++;
+        setTimeout(typeWriterEffect, speed);
+    }
+}
+
 window.addEventListener("resize", resizer);
 window.onload = resizer();
