@@ -1,5 +1,4 @@
-User-agent: ia_archiver
-Disallow:/
-
 User-agent: *
-Disallow:/404-uh-oh/index.html
+Allow: /images/
+Allow: /css/
+Allow: /js/
