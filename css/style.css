@@ -1,4 +1,16 @@
-@charset "UTF-8";button,button[type=button],button[type=reset],button[type=submit] {
+@charset "UTF-8";
+
+.typing-cursor::after {
+    content: '|';
+    margin-left: 4px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50%, 100% { opacity: 1; }
+    25%, 75% { opacity: 0; }
+}
+button,button[type=button],button[type=reset],button[type=submit] {
     -webkit-appearance: button
 }
 
@@ -317,11 +329,18 @@ abbr[title] {
 
 .social-icons {
     display: flex;
-    justify-content: center
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.8s ease;
 }
 
 .social-icons__link {
-    padding: .8rem
+    padding: .8rem;
+    transition: transform 0.2s ease;
+}
+
+.social-icons__link:hover {
+    transform: translateY(-2px);
 }
 
 .social-icons__link:not(:last-child) {
@@ -332,7 +351,8 @@ abbr[title] {
     width: 1.4rem;
     height: 1.4rem;
     background-size: contain;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
+    transition: transform 0.2s ease;
 }
 
 body.nav--active {
@@ -374,7 +394,11 @@ main {
     font-size: 3em;
     line-height: 1;
     letter-spacing: -.03em;
-    margin: 0
+    margin: 0;
+    min-height: 1.2em;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .splash h2 {
@@ -382,7 +406,11 @@ main {
     font-weight: 400;
     line-height: 1.25;
     max-width: 22em;
-    letter-spacing: -.03em
+    letter-spacing: -.03em;
+    min-height: 2.5em;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
 .fancy {
@@ -390,10 +418,21 @@ main {
 }
 
 .handle {
-    display: inline-block;
+    display: block;
     margin-top: .275em;
     color: #9b9b9b;
-    letter-spacing: .5px
+    letter-spacing: .5px;
+    min-height: 1.5em;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+/* Splash container flex styling */
+.splash {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 800px;
 }
 
 .writing {
@@ -434,4 +473,18 @@ main {
 .hover-underline-animation:hover::after {
     transform: scaleX(1);
     transform-origin: bottom center;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .typing-cursor::after {
+        animation: none;
+    }
+
+    * {
+        transition: none !important;
+    }
 }

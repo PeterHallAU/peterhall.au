@@ -15,15 +15,15 @@
         <meta name="twitter:description" content="Staff Site Reliability Engineer. Cloud Infrastructure Enthusiast. DevOps Advocate." />
         <meta name="twitter:site" content="https://twitter.com/peterhallau" />
         <meta name="twitter:creator" content="https://twitter.com/peterhallau" />
-        <link rel="icon" href="https://peterhall.au/images/favicon.ico" type="image/x-icon">
-        <link rel="icon" type="image/png" sizes="32x32" href="https://peterhall.au/images/favicon-32.png">
-        <link rel="icon" type="image/png" sizes="128x128" href="https://peterhall.au/images/favicon-128.png">
-        <link rel="icon" type="image/png" sizes="180x180" href="https://peterhall.au/images/favicon-180.png">
-        <link rel="icon" type="image/png" sizes="192x192" href="https://peterhall.au/images/favicon-192.png">
-        <link rel="apple-touch-icon" href="https://peterhall.au/images/favicon-180.png">
+        <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+        <link rel="icon" type="image/png" sizes="128x128" href="images/favicon-128.png">
+        <link rel="icon" type="image/png" sizes="180x180" href="images/favicon-180.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="images/favicon-192.png">
+        <link rel="apple-touch-icon" href="images/favicon-180.png">
         <link rel="shortcut icon" type="image/png" href="/favicon.ico" />
         <link type="text/css" rel="stylesheet" href="/css/style.css" />
-        <link rel="alternate" type="application/rss+xml+xml" href="https://peterhall.au/index.xml" title="Peter Hall" />
+        <link rel="alternate" type="application/rss+xml+xml" href="index.xml" title="Peter Hall" />
         <script type="application/ld+json">  
   </script>
     </head>
@@ -54,34 +54,73 @@
         <main>
                         <div class="splash-container">
                 <div class="splash">
-                    <h1>Hi, I&#39;m Peter Hall<span class="fancy">.</span></h1>
-                    <span class="handle">@PeterHallAU</span>
-                    <h2>Staff Site Reliability Engineer. Cloud Infrastructure Enthusiast. DevOps Advocate.</h2>
+                    <h1 id="typing-text"></h1>
+                    <span class="handle" id="typing-handle"></span>
+                    <h2 id="typing-subtitle"></h2>
                     <div class="social-icons">
                         <a class="social-icons__link" title="Twitter" href="https://x.com/peterhallau" target="_blank"
                             rel="noopener">
                             <div class="social-icons__icon"
-                                style="background-image: url('https://peterhall.au/images/twitter.svg')"></div>
+                                style="background-image: url('images/twitter.svg')"></div>
                         </a>
                         <a class="social-icons__link" title="GitHub" href="https://github.com/peterhallau"
                             target="_blank" rel="noopener">
                             <div class="social-icons__icon"
-                                style="background-image: url('https://peterhall.au/images/github.svg')"></div>
+                                style="background-image: url('images/github.svg')"></div>
                         </a>
                         <a class="social-icons__link" title="LinkedIn" href="https://linkedin.com/in/peterhallau"
                             target="_blank" rel="noopener">
                             <div class="social-icons__icon"
-                                style="background-image: url('https://peterhall.au/images/linkedin.svg')"></div>
-                        </a>
-                        <a class="social-icons__link" title="Mastodon" href="https://mastodon.social/@peterhall"
-                            target="_blank" rel="me" >
-                            <div class="social-icons__icon"
-                                style="background-image: url('https://peterhall.au/images/mastodon.svg')"></div>
+                                style="background-image: url('images/linkedin.svg')"></div>
                         </a>
                     </div>
                 </div>
             </div>
         </main>
         <script src="/js/script.js" crossorigin="anonymous"></script>
+        <script>
+          const lines = [
+            { el: "typing-text", text: "Hi, I'm Peter Hall.", delay: 0 },
+            { el: "typing-handle", text: "@PeterHallAU", delay: 150 },
+            { el: "typing-subtitle", text: "Site Reliability Engineer. Cloud Infrastructure Enthusiast. DevOps Advocate.", delay: 150 }
+          ];
+
+          let lineIndex = 0;
+          let charIndex = 0;
+
+          function typeLine() {
+            if (lineIndex >= lines.length) return;
+
+            const current = lines[lineIndex];
+            const element = document.getElementById(current.el);
+
+            element.classList.add("typing-cursor");
+            element.style.opacity = "1";
+            element.style.transform = "translateY(0)";
+
+            if (charIndex < current.text.length) {
+              element.textContent = current.text.substring(0, charIndex + 1);
+              charIndex++;
+              setTimeout(typeLine, 40);
+            } else {
+              element.classList.remove("typing-cursor");
+
+              // If this was the last line, fade in social icons
+              if (lineIndex === lines.length - 1) {
+                const icons = document.querySelector(".social-icons");
+                setTimeout(() => {
+                  icons.style.opacity = "1";
+                }, 300);
+                return;
+              }
+
+              lineIndex++;
+              charIndex = 0;
+              setTimeout(typeLine, lines[lineIndex].delay || 300);
+            }
+          }
+
+          document.addEventListener("DOMContentLoaded", typeLine);
+        </script>
     </body>
 </html>
